@@ -1,4 +1,4 @@
-Aplikacja sprawdza, czy przesyłany plik nie jest pusty, nie przekracza dopuszczalnego limitu 5 MB oraz czy posiada wszystkie wymagane atrybuty i czy nie są one puste. 
+Aplikacja umożliwia przesłanie pliku za pomocą formularza oraz sprawdza, czy przesyłany plik nie jest pusty, nie przekracza dopuszczalnego limitu 5 MB oraz czy posiada wszystkie wymagane atrybuty i czy nie są one puste. 
 Dodatkowo, czy plik zawiera poprawny format, akceptując jedynie pliki o rozszerzeniach '.json' i '.xml'.
 Po dodaniu listy, wyświetlane jest podsumowanie wraz z guzikiem umożliwiającym bezpośrednie przejście do strony wyświetlającej użytkowników.
 
