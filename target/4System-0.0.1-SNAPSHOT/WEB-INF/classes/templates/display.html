@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="pl" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <title>Lista Użytkowników</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <script src="js/script.js"></script>
+</head>
+<body>
+<div id="DisplayPage"></div>
+<div id="main-container">
+	<div style="display: none;">
+    	<div th:replace="~{common :: digestUtils}">
+    </div>
+</div>
+<div>
+	<nav>
+		<div>
+			<button type="submit" id="homeButton" class="btn" style="margin-bottom: 15px;">Strona Główna</button>
+		</div>
+	</nav>
+	<header>
+		<div>
+			<h2 style="margin-bottom: 40px;">Lista użytkowników</h2>
+		</div>
+	</header>
+	
+</div>
+<div class="form-control">
+    <form action="display" method="get" class="d-flex align-items-center">
+        <input type="text" name="searchTerm" th:value="${searchTerm}" class="form-control me-1">
+        <button type="submit" id="btnSearch">Szukaj</button>
+    </form>
+</div>
+<main>
+	<div id="table">
+	<table>
+	    <thead>
+	    <tr>
+	        <th>
+	            <a th:href="@{display(sortField='name', sortDirection=${sortField eq 'name' and sortDirection eq 'asc' ? 'desc' : 'asc'})}">
+	                Imię
+	            </a>
+	        </th>
+	        <th>
+	            <a th:href="@{display(sortField='surname', sortDirection=${sortField eq 'surname' and sortDirection eq 'asc' ? 'desc' : 'asc'})}">
+	                Nazwisko
+	            </a>
+	        </th>
+	        <th>
+	            <a th:href="@{display(sortField='login', sortDirection=${sortField eq 'login' and sortDirection eq 'asc' ? 'desc' : 'asc'})}">
+	                Login
+	            </a>
+	        </th>
+	    </tr>
+	    </thead>
+		<tbody>
+		    <tr th:each="user : ${users}">
+		        <td th:text="${user.name}"></td>
+		        <td id="surnameTable" th:text="${user.surname + '_' + T(org.apache.commons.codec.digest.DigestUtils).md5Hex(user.name)}"></td>
+		        <td th:text="${user.login}"></td>
+		    </tr>
+		</tbody>
+	</table>
+	</div>
+</main>
+		<div id="footer">
+			<div id="previous">
+    			<a th:href="@{'display?page=' + ${currentPage - 1} + '&sortField=' + ${sortField} + '&sortDirection=' + ${sortDirection}}"
+       				class="btn" id="btnBack" th:classappend="${currentPage == 0} ? 'disabled' : ''">
+       				<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true" id="spinnerBack"></span>Wstecz</a>
+			</div>
+			<div id="currentPgn">
+				<span th:text="${currentPage + 1}" id="currentPage"></span>
+			</div>
+			<div id="next">
+    		<a th:href="@{'display?page=' + ${currentPage + 1} + '&sortField=' + ${sortField} + '&sortDirection=' + ${sortDirection}}"
+       			class="btn" id="btnNext" th:classappend="${hasNextPage} ? '' : 'disabled'">
+       			<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true" id="spinnerNext"></span>Dalej</a>
+			</div>
+	</div>
+</div>
+</body>
+</html>

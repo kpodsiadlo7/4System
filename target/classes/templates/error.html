@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="pl" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <link rel="stylesheet" href="/4system/css/styles.css">
+    <script src="/4system/js/script.js"></script>
+    <title>Error Page</title>
+</head>
+<body>
+    <div id="main-container">
+    	<header>
+    		<div id="info">
+            	<h1>Zagubiłeś się?</h1>
+        	</div>
+    	</header>
+        <nav>
+        	<div id="button-container">
+        		<div id="uploadButton">
+    				<h3 th:text="${error}"></h3>
+        			<button type="submit" id="homeBtn" class="btn" style="margin-bottom: 15px;">Strona Główna</button>
+        		</div>
+        	</div>
+        </nav>
+    </div>
+    <script>
+    	homeBtn.addEventListener("click", function() {
+        	window.location.href = "/4system";
+       	});
+    </script>
+</body>
+</html>
